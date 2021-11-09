@@ -52,56 +52,71 @@ function crearValoracio(){
             
 }
 
-function generaAcuditJoke(): void{  //funcio que genera un nou acudit, canvia el fons i crea una valoracio
-    
-    fetch(url, {
-        headers: {
-            'Accept': 'application/json'
-        }
-    })
-        .then(response => response.json())
-        .then(data => imprimirData(data))
-        .catch(err => console.log(err))
+async function generaAcuditJoke() {  //funcio que genera un nou acudit, canvia el fons i crea una valoracio
+    try{
+        const response: Response = await fetch(url, {
+            method: "GET",
+            headers: {
+            Accept: 'application/json'
+            },
+        });
 
-        const imprimirData = (data: any) => {
-                acudit = data.joke;
-                caixaAcudit.innerHTML = `<p class="text-light">" ${data.joke} "</p>`;
-        }
-
+        const data = await response.json();
+        const acudit: string = data.joke;
+        caixaAcudit.innerHTML = `<p class="text-light">" ${data.joke} "</p>`;
         crearValoracio();
-        canviaFons();     
+        canviaFons();  
+        return acudit;
+           
+    } catch (error){
+        console.log(error);
+    }      
+        
 }
+async function mostraMeteo(){  //funcio que genera un nou acudit, canvia el fons i crea una valoracio
+    try{
+        const response: Response = await fetch(url2, {
+            method: "GET",
+            headers: {
+            Accept: 'application/json'
+            },
+        });
 
-function mostraMeteo():void{ //funcio que crida a l'Api del servei meteorológic, mostrant la temperatura i la imatge
-    fetch(url2)
-        .then(response => response.json())
-        .then(data => imprimirMeteo(data))
-        .catch(err => console.log(err))
+        const data = await response.json();
+        const weather = data.weather[0].icon;
+        const temperatura = data.main.temp;
+        caixaIcon.innerHTML = `<img src="http://openweathermap.org/img/wn/${data.weather[0].icon}.png">`;
+        caixaTemp.innerHTML = `<p class="fs-5"><strong> |  ${data.main.temp}º</strong></p>`;
+         
+        return weather;
+           
+    } catch (error){
+        console.log(error);
+    }            
+};
 
-        const imprimirMeteo = (data: any) => {
-            caixaIcon.innerHTML = `<img src="http://openweathermap.org/img/wn/${data.weather[0].icon}.png">`;
-            caixaTemp.innerHTML = `<p class="fs-5"><strong> |  ${data.main.temp}º</strong></p>`;
-        } 
-}
+async function generaAcuditChuck() {  //funcio que genera un nou acudit, canvia el fons i crea una valoracio
+    try{
+        const response: Response = await fetch(url3, {
+            method: "GET",
+            headers: {
+            Accept: 'application/json'
+            },
+        });
 
-function generaAcuditChuck():void{ //funcio que crida a l'Api d' acudits de Chuck Norris, crea valoracio i canvia fons
-    fetch(url3, {
-        headers: {
-            'Accept': 'application/json'
-        }
-    })
-        .then(response => response.json())
-        .then(data => mostraChuck(data))
-        .catch(err => console.log(err))
-
-        const mostraChuck = (data: any) => {
-            acudit = data.value;
-            caixaAcudit.innerHTML = `<p class="text-light">" ${data.value} "</p>`; 
-        } 
-
+        const data = await response.json();
+        const acudit: string = data.value;
+        caixaAcudit.innerHTML = `<p class="text-light">" ${data.value} "</p>`;
         crearValoracio();
-        canviaFons();
+        canviaFons();  
+        return acudit;
+
+    } catch (error){
+        console.log(error);
+
+};
 }
+
 
 function canviaFons(){ // funcio per canviar el background al canviar d'acudit
 
