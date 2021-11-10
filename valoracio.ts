@@ -3,3 +3,5 @@ interface jokeReport {
     score: number | null;
     date: string;  
 }
+
+

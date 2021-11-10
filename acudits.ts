@@ -1,14 +1,14 @@
-// import { Valoracio } from "./valoracio";
+// import { jokeReport } from './valoracio';
 
 const url: string = "https://icanhazdadjoke.com/";
 const url2: string = "https://api.openweathermap.org/data/2.5/weather?q=Barcelona&units=metric&lang=ca&appid=30195643f30889e63585cd5faac75c75";
 const url3: string = "https://api.chucknorris.io/jokes/random"
-const caixaAcudit:any = document.querySelector('#container_acudit');
-const caixaTemp: any = document.querySelector('#cont_temp');
-const caixaIcon: any = document.querySelector('#cont_icon');
-let button1: any = document.querySelector('#button1');
-let button2: any = document.querySelector('#button2');
-let button3: any = document.querySelector('#button3');
+const caixaAcudit = <HTMLDivElement> document.querySelector('#container_acudit');
+const caixaTemp =  <HTMLDivElement> document.querySelector('#cont_temp');
+const caixaIcon =  <HTMLDivElement> document.querySelector('#cont_icon');
+let button1 = <HTMLButtonElement> document.querySelector('#button1');
+let button2 = <HTMLButtonElement> document.querySelector('#button2');
+let button3 = <HTMLButtonElement> document.querySelector('#button3');
 let puntuacio: number | null = 0; 
 let acudit:string; 
 let reportJokes: jokeReport[] = [];
@@ -16,8 +16,8 @@ let reportJokes: jokeReport[] = [];
 
 function agregaFuncio():void{
 
-    let button: any = document.querySelector('#btnSeguent');
-    button?.addEventListener('click', generaAcudit);
+    let button = <HTMLButtonElement> document.querySelector('#btnSeguent');
+    button.addEventListener('click', generaAcudit);
     
     mostraMeteo();
 }
@@ -34,9 +34,9 @@ function generaAcudit(){
 
 function crearValoracio(){
 
-            button1?.addEventListener('click', () => {puntuacio = 1});
-            button2?.addEventListener('click', () => {puntuacio = 2}); 
-            button3?.addEventListener('click', () => {puntuacio = 3});
+            button1.addEventListener('click', () => {puntuacio = 1});
+            button2.addEventListener('click', () => {puntuacio = 2}); 
+            button3.addEventListener('click', () => {puntuacio = 3});
         
             const d: Date = new Date();
             let date: string = d.toISOString();
@@ -63,7 +63,7 @@ async function generaAcuditJoke() {  //funcio que genera un nou acudit, canvia e
 
         const data = await response.json();
         const acudit: string = data.joke;
-        caixaAcudit.innerHTML = `<p class="text-light">" ${data.joke} "</p>`;
+        caixaAcudit.innerHTML = `<p class="text-light col-8 text-center ms-5">" ${data.joke} "</p>`;
         crearValoracio();
         canviaFons();  
         return acudit;
@@ -85,8 +85,9 @@ async function mostraMeteo(){  //funcio que genera un nou acudit, canvia el fons
         const data = await response.json();
         const weather = data.weather[0].icon;
         const temperatura = data.main.temp;
+        const tempR = Math.round(data.main.temp);
         caixaIcon.innerHTML = `<img src="http://openweathermap.org/img/wn/${data.weather[0].icon}.png">`;
-        caixaTemp.innerHTML = `<p class="fs-5"><strong> |  ${data.main.temp}º</strong></p>`;
+        caixaTemp.innerHTML = `<p class="fs-5"><strong> | ${tempR} º</strong></p>`;
          
         return weather;
            
@@ -106,7 +107,7 @@ async function generaAcuditChuck() {  //funcio que genera un nou acudit, canvia 
 
         const data = await response.json();
         const acudit: string = data.value;
-        caixaAcudit.innerHTML = `<p class="text-light">" ${data.value} "</p>`;
+        caixaAcudit.innerHTML = `<p class="text-light col-8 text-center ms-5">" ${data.value} "</p>`;
         crearValoracio();
         canviaFons();  
         return acudit;
@@ -120,12 +121,12 @@ async function generaAcuditChuck() {  //funcio que genera un nou acudit, canvia 
 
 function canviaFons(){ // funcio per canviar el background al canviar d'acudit
 
-    // const fons: string[] = ['blob1', 'blob2', 'blob3', 'blob4'];
-    // let containerP: any = document.querySelector('#container_principal');
-    // let index: number = Math.floor(Math.random()*fons.length);
-    // let fonsAleatori = fons[index];
-    // console.log(fonsAleatori);
-    // containerP.className = ' '+fonsAleatori+ 'col-8 d-flex flex-column align-items-center vh-100 justify-content-center mt-n5 ';
+    const fons: string[] = ['blob1', 'blob2', 'blob3'];
+    let containerP: any = document.querySelector('#container_principal');
+    let index: number = Math.floor(Math.random()*fons.length);
+    let fonsAleatori: string = fons[index];
+    containerP.className = ' '+fonsAleatori+ ' col-8 d-flex flex-column align-items-center vh-100 justify-content-center mt-n5 ';
+    console.log(containerP.className);
 }
 
 window.addEventListener('load', agregaFuncio); 

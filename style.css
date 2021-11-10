@@ -2,40 +2,32 @@
     background-image: url('img/blob.svg');
     background-repeat: no-repeat;
     background-size: 100%;
-    background-position: center;
-    height: 60vw;
+    background-position: cover;
+    /* height: 80vw; */
 }
 
 .blob1{
-    background-image: url('img/blob (6).svg');
+    background-image: url('img/uno.svg');
     background-repeat: no-repeat;
     background-size: 100%;
     background-position: center;
-    height: 60vw;
+    height: 80vw;
 }
 
 .blob2{
-    background-image: url('img/blob (6).svg');
+    background-image: url('img/dos.svg');
     background-repeat: no-repeat;
     background-size: 100%;
     background-position: center;
-    height: 60vw;
+    height: 80vw;
 }
 
 .blob3{
-    background-image: url('img/blob (6).svg');
+    background-image: url('img/tres.svg');
     background-repeat: no-repeat;
     background-size: 100%;
     background-position: center;
-    height: 60vw;
-}
-
-.blob4{
-    background-image: url('img/blob (6).svg');
-    background-repeat: no-repeat;
-    background-size: 100%;
-    background-position: center;
-    height: 60vw;
+    height: 80vw;
 }
 
 .btn-seguent{

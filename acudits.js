@@ -1,5 +1,5 @@
 "use strict";
-// import { Valoracio } from "./valoracio";
+// import { jokeReport } from './valoracio';
 var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, generator) {
     function adopt(value) { return value instanceof P ? value : new P(function (resolve) { resolve(value); }); }
     return new (P || (P = Promise))(function (resolve, reject) {
@@ -50,7 +50,7 @@ var acudit;
 var reportJokes = [];
 function agregaFuncio() {
     var button = document.querySelector('#btnSeguent');
-    button === null || button === void 0 ? void 0 : button.addEventListener('click', generaAcudit);
+    button.addEventListener('click', generaAcudit);
     mostraMeteo();
 }
 function generaAcudit() {
@@ -64,9 +64,9 @@ function generaAcudit() {
     }
 }
 function crearValoracio() {
-    button1 === null || button1 === void 0 ? void 0 : button1.addEventListener('click', function () { puntuacio = 1; });
-    button2 === null || button2 === void 0 ? void 0 : button2.addEventListener('click', function () { puntuacio = 2; });
-    button3 === null || button3 === void 0 ? void 0 : button3.addEventListener('click', function () { puntuacio = 3; });
+    button1.addEventListener('click', function () { puntuacio = 1; });
+    button2.addEventListener('click', function () { puntuacio = 2; });
+    button3.addEventListener('click', function () { puntuacio = 3; });
     var d = new Date();
     var date = d.toISOString();
     var valoracio = {
@@ -96,7 +96,7 @@ function generaAcuditJoke() {
                 case 2:
                     data = _a.sent();
                     acudit_1 = data.joke;
-                    caixaAcudit.innerHTML = "<p class=\"text-light\">\" " + data.joke + " \"</p>";
+                    caixaAcudit.innerHTML = "<p class=\"text-light col-8 text-center ms-5\">\" " + data.joke + " \"</p>";
                     crearValoracio();
                     canviaFons();
                     return [2 /*return*/, acudit_1];
@@ -111,7 +111,7 @@ function generaAcuditJoke() {
 }
 function mostraMeteo() {
     return __awaiter(this, void 0, void 0, function () {
-        var response, data, weather, temperatura, error_2;
+        var response, data, weather, temperatura, tempR, error_2;
         return __generator(this, function (_a) {
             switch (_a.label) {
                 case 0:
@@ -129,8 +129,9 @@ function mostraMeteo() {
                     data = _a.sent();
                     weather = data.weather[0].icon;
                     temperatura = data.main.temp;
+                    tempR = Math.round(data.main.temp);
                     caixaIcon.innerHTML = "<img src=\"http://openweathermap.org/img/wn/" + data.weather[0].icon + ".png\">";
-                    caixaTemp.innerHTML = "<p class=\"fs-5\"><strong> |  " + data.main.temp + "\u00BA</strong></p>";
+                    caixaTemp.innerHTML = "<p class=\"fs-5\"><strong> | " + tempR + " \u00BA</strong></p>";
                     return [2 /*return*/, weather];
                 case 3:
                     error_2 = _a.sent();
@@ -161,7 +162,7 @@ function generaAcuditChuck() {
                 case 2:
                     data = _a.sent();
                     acudit_2 = data.value;
-                    caixaAcudit.innerHTML = "<p class=\"text-light\">\" " + data.value + " \"</p>";
+                    caixaAcudit.innerHTML = "<p class=\"text-light col-8 text-center ms-5\">\" " + data.value + " \"</p>";
                     crearValoracio();
                     canviaFons();
                     return [2 /*return*/, acudit_2];
@@ -177,11 +178,11 @@ function generaAcuditChuck() {
     });
 }
 function canviaFons() {
-    // const fons: string[] = ['blob1', 'blob2', 'blob3', 'blob4'];
-    // let containerP: any = document.querySelector('#container_principal');
-    // let index: number = Math.floor(Math.random()*fons.length);
-    // let fonsAleatori = fons[index];
-    // console.log(fonsAleatori);
-    // containerP.className = ' '+fonsAleatori+ 'col-8 d-flex flex-column align-items-center vh-100 justify-content-center mt-n5 ';
+    var fons = ['blob1', 'blob2', 'blob3'];
+    var containerP = document.querySelector('#container_principal');
+    var index = Math.floor(Math.random() * fons.length);
+    var fonsAleatori = fons[index];
+    containerP.className = ' ' + fonsAleatori + ' col-8 d-flex flex-column align-items-center vh-100 justify-content-center mt-n5 ';
+    console.log(containerP.className);
 }
 window.addEventListener('load', agregaFuncio);
