@@ -121,11 +121,11 @@ async function generaAcuditChuck() {  //funcio que genera un nou acudit, canvia 
 
 function canviaFons(){ // funcio per canviar el background al canviar d'acudit
 
-    const fons: string[] = ['blob1', 'blob2', 'blob3'];
+    const fons: string[] = ['img/uno.svg', 'img/dos.svg', 'img/tres.svg'];
     let containerP: any = document.querySelector('#container_principal');
     let index: number = Math.floor(Math.random()*fons.length);
     let fonsAleatori: string = fons[index];
-    containerP.className = ' '+fonsAleatori+ ' col-8 d-flex flex-column align-items-center vh-100 justify-content-center mt-n5 ';
+    containerP.style.backgroundImage = 'url('+fonsAleatori+')';
     console.log(containerP.className);
 }
 

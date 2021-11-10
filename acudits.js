@@ -178,11 +178,11 @@ function generaAcuditChuck() {
     });
 }
 function canviaFons() {
-    var fons = ['blob1', 'blob2', 'blob3'];
+    var fons = ['img/uno.svg', 'img/dos.svg', 'img/tres.svg'];
     var containerP = document.querySelector('#container_principal');
     var index = Math.floor(Math.random() * fons.length);
     var fonsAleatori = fons[index];
-    containerP.className = ' ' + fonsAleatori + ' col-8 d-flex flex-column align-items-center vh-100 justify-content-center mt-n5 ';
+    containerP.style.backgroundImage = 'url(' + fonsAleatori + ')';
     console.log(containerP.className);
 }
 window.addEventListener('load', agregaFuncio);
