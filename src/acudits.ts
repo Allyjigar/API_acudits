@@ -59,7 +59,7 @@ async function generaAcuditJoke() {  //funcio que genera un nou acudit, canvia e
             headers: {
             Accept: 'application/json'
             },
-        });
+        }); 
 
         const data = await response.json();
         const acudit: string = data.joke;
@@ -115,7 +115,7 @@ async function generaAcuditChuck() {  //funcio que genera un nou acudit, canvia 
     } catch (error){
         console.log(error);
 
-};
+}; 
 }
 
 
@@ -126,7 +126,7 @@ function canviaFons(){ // funcio per canviar el background al canviar d'acudit
     let index: number = Math.floor(Math.random()*fons.length);
     let fonsAleatori: string = fons[index];
     containerP.style.backgroundImage = 'url('+fonsAleatori+')';
-    console.log(containerP.className);
 }
 
 window.addEventListener('load', agregaFuncio); 
+

@@ -183,6 +183,5 @@ function canviaFons() {
     var index = Math.floor(Math.random() * fons.length);
     var fonsAleatori = fons[index];
     containerP.style.backgroundImage = 'url(' + fonsAleatori + ')';
-    console.log(containerP.className);
 }
 window.addEventListener('load', agregaFuncio);
